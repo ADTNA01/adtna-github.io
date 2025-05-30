@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adarsh Kumar Thakur - Naval Architect Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-cyan: #00ffff;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            animation: float-particle 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        .particle:nth-child(2n) {
+            background: var(--accent-purple);
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(3n) {
+            background: var(--accent-pink);
+            animation-duration: 10s;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header with advanced glassmorphism */
+        .header {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 80px 60px;
+            margin-bottom: 60px;
+            text-align: center;
+            overflow: hidden;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), var(--accent-pink), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin: 0 auto;
+            position: relative;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                           0 0 40px rgba(139, 92, 246, 0.2),
+                           0 0 60px rgba(236, 72, 153, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 255, 255, 0.5),
+                           0 0 60px rgba(139, 92, 246, 0.3),
+                           0 0 90px rgba(236, 72, 153, 0.2);
+            }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Modern Section Design */
+        .section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            opacity: 0.7;
+        }
+
+        .section h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        /* Skills Grid with Modern Cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, var(--glass-bg), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-cyan);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 80px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 21px;
+            top: 20px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border: 3px solid var(--primary-bg);
+            box-shadow: 0 0 0 4px var(--glass-border);
+        }
+
+        .timeline-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-cyan);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .company {
+            color: var(--accent-cyan);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 20px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+        }
+
+        .timeline-content li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-secondary);
+        }
+
+        .timeline-content li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-details {
+            list-style: none;
+        }
+
+        .project-details li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .project-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-card {
+            background: linear-gradient(135deg, var(--glass-bg), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .education-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .education-card .institution {
+            color: var(--accent-cyan);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .education-card .grade {
+            color: var(--accent-purple);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .cert-card:hover::before {
+            animation: shine 1s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+        }
+
+        .cert-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .cert-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 60px 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 40px 30px;
+            }
+
+            .section h2 {
+                font-size: 2.2rem;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="floating-particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="profile-container">
+                <div class="profile-img">⚓</div>
+            </div>
+            <h1>Adarsh Kumar Thakur</h1>
+            <p class="subtitle">Naval Architect & Offshore Engineering Professional</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:aadarshthakur101@gmail.com" class="contact-item">
+                    <span>📧 aadarshthakur101@gmail.com</span>
+                </a>
+                <a href="tel:+917877468571" class="contact-item">
+                    <span>📱 +91-7877468571</span>
+                </a>
+                <a href="https://www.linkedin.com/in/adarsh-kumar-t-b2bb28151" class="contact-item">
+                    <span>💼 LinkedIn Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>About Me</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); text-align: center; max-width: 900px; margin: 0 auto;">
+                I am a dedicated Naval Architecture and Offshore Engineering professional with a passion for developing efficient and sustainable marine vessels. My goal is to leverage my academic background and practical experience gained through internships at premier shipyards to excel in naval architecture, ensuring the development of cutting-edge maritime solutions. With hands-on experience in hull construction, stability analysis, and 3D modeling, I bring a comprehensive understanding of the marine industry to every project.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Design & Modeling</h3>
+                    <p>SolidWorks • Rhino • AutoCAD 2D<br>3D Hull Modeling • Component Design<br>Advanced Surface Modeling</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🚢</div>
+                    <h3>Naval Architecture</h3>
+                    <p>Maxsurf • Hydrostatics Analysis<br>Stability Calculations • GA Planning<br>Marine Systems Design</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Analysis & Simulation</h3>
+                    <p>Ansys Fluent • CFD Analysis<br>Resistance & Powering Studies<br>Structural Analysis</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎯</div>
+                    <h3>Professional Skills</h3>
+                    <p>Problem Solving • Leadership<br>Attention to Detail • Team Coordination<br>Project Management</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Student Intern</h3>
+                        <div class="company">Ambition Marine Services Pvt. Ltd. - Mumbai</div>
+                        <div class="date">Feb 2025 - May 2025</div>
+                        <ul>
+                            <li>Contributed to concept design phase for vessel projects</li>
+                            <li>Estimated weight distribution for load spread calculations</li>
+                            <li>Created 3D models of OEM components for integration</li>
+                            <li>Gained understanding of IRS Rulebook and compliance requirements</li>
+                            <li>Developed 3D hull models for design and analysis purposes</li>
+                            <li>Participated in design reviews and feedback sessions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Student Intern</h3>
+                        <div class="company">Garden Reach Shipbuilders & Engineers Ltd. - Kolkata</div>
+                        <div class="date">Jun 2024 - Jul 2024</div>
+                        <ul>
+                            <li>Observed hull construction and block assembly processes</li>
+                            <li>Studied machinery and electrical outfitting procedures</li>
+                            <li>Visited INS frigates for hands-on learning experience</li>
+                            <li>Understood shipyard workflow and production planning</li>
+                            <li>Observed quality checks and inspection routines</li>
+                            <li>Gained insight into team coordination and daily operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Student Intern</h3>
+                        <div class="company">Hindustan Shipyard Limited - Vishakhapatnam</div>
+                        <div class="date">Feb 2023 - Mar 2023</div>
+                        <ul>
+                            <li>Interpreted General Arrangement (GA) drawings</li>
+                            <li>Performed numerical inclination experiments</li>
+                            <li>Analyzed stability from inclination test data</li>
+                            <li>Visited INS submarine to study layout and systems</li>
+                            <li>Gained exposure to dock operations and scheduling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>25,000 T DWT Oil Tanker Design</h3>
+                    <p>Comprehensive preliminary design of a medium-sized oil tanker with complete engineering analysis and optimization.</p>
+                    <ul class="project-details">
+                        <li>Parent ship analysis and optimization</li>
+                        <li>Hydrostatics and stability calculations</li>
+                        <li>Resistance and powering analysis</li>
+                        <li>Structural design with initial scantling</li>
+                        <li>General Arrangement (GA) plan development</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h3>Rudder Performance Study (NACA 0009)</h3>
+                    <p>Advanced hydrodynamic analysis of rudder performance using computational fluid dynamics and performance optimization.</p>
+                    <ul class="project-details">
+                        <li>Evaluated Lift Coefficient (Cₗ) and Drag Coefficient (Cₑ)</li>
+                        <li>Analyzed Lift-to-Drag Ratio (Cₗ/Cₑ) for efficiency</li>
+                        <li>Investigated flow separation characteristics</li>
+                        <li>Determined stall angle and rudder effectiveness</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h3>Superyacht Hull Design</h3>
+                    <p>Complete 3D modeling and hydrodynamic analysis of luxury superyacht hull using advanced design software and optimization techniques.</p>
+                    <ul class="project-details">
+                        <li>Created detailed 3D hull geometry using Rhino</li>
+                        <li>Refined hull fairing for optimal hydrodynamics</li>
+                        <li>Performed hydrostatics and stability analysis</li>
+                        <li>Estimated resistance and propulsion requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Education & Certifications</h2>
+            
+            <div class="education-card">
+                <h3>Bachelor of Engineering</h3>
+                <div class="institution">Naval Architecture and Offshore Engineering</div>
+                <div class="institution">Academy Of Maritime Education And Training (2021 - 2025)</div>
+                <div class="grade">First Class</div>
+            </div>
+
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <h4>NPTEL</h4>
+                    <p>Corrosion/Environmental Degradation/Surface Engineering</p>
+                </div>
+                <div class="cert-card">
+                    <h4>NPTEL</h4>
+                    <p>Air Pollution and Control</p>
+                </div>
+                <div class="cert-card">
+                    <h4>Learn Delta</h4>
+                    <p>AutoCAD 2D Professional</p>
+                </div>
+                <div class="cert-card">
+                    <h4>NPTEL</h4>
+                    <p>Automation in Production Systems and Management</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Enhanced animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Staggered section animations
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Skill card interactions
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) rotateX(5deg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) rotateX(0deg)';
+                });
+            });
+
+            // Timeline animation on scroll
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 
